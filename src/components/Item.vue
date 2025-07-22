@@ -57,8 +57,6 @@ const validatePassword = () => {
 	else return false;
 
 	if (!isPasswordValid.value) refPassword.value?.focus();
-
-    // isPasswordValid.value = localAccount.password !== '' && localAccount.type === 'Локальная' ;
 };
 
 const onDelete = () => {
@@ -73,10 +71,6 @@ const onSave = () => {
     if (isLoginValid.value && (localAccount.type === 'LDAP' || isPasswordValid.value) &&  isLabelValid.value) {
         
 		localAccount.label = localAccount.labelString.split(';').map(text => ({ text }));
-		// emit('update', {
-        //     ...localAccount,
-        //     label: localAccount.labelString.split(';').map(text => ({ text })),
-        // });
 
 		emit('update', {
             ...localAccount
@@ -85,42 +79,10 @@ const onSave = () => {
 		console.log('Validation successful');
  
     } else {
-        // Show some error message
         console.log('Validation failed');
-		// event.target.focus();
 
-		// const refLabel = ref(null);
-		// const refLogin = ref(null);
-		// const refPassword = ref(null);
-
-		// if (!refLabel.value) {
-		// 	refLabel.value.$el.querySelector('input').focus();
-		// } else if (!refLogin.value) {
-		// 	refLogin.value.$el.querySelector('input').focus();
-		// } else if (localAccount.type === 'Локальная' && !isPasswordValid.value) {
-		// 	refPassword.value.$el.querySelector('input').focus();
-		// }
     }
 };
-
-
-// function onSave() {
-//     validateLogin();
-//     validatePassword();
-// 	validateLabel();
-
-//     if (isLoginValid.value && (localAccount.type === 'LDAP' || isPasswordValid.value) &&  isLabelValid.value) {
-//         emit('update', {
-//             ...localAccount,
-//             label: localAccount.labelString.split(';').map(text => ({ text })),
-//         }); 
-// 		return true;
-//     } else {
-//         // Show some error message
-//         console.log('Validation failed');
-// 		return false;
-//     }
-// };
 
 const onTypeChange = () => {
     if (localAccount.type === 'LDAP') {
